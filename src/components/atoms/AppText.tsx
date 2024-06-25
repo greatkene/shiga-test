@@ -97,7 +97,7 @@ export const AppText: React.FC<AppTextProps> = ({
 const styles = StyleSheet.create({
   text: {
     fontSize: Sizes.font14,
-    color: Colors.black,
+    color: Colors.white,
     fontFamily: FontFamily.sansRegular,
   },
   small: {

@@ -8,14 +8,9 @@ interface ScreenProps {
   backgroundColor?: string;
   children: React.ReactNode;
   margin?: boolean;
-  imageStatusBar?: boolean;
 }
 
-export default function ScreeWrapper({
-  margin = true,
-  imageStatusBar = false,
-  children,
-}: ScreenProps) {
+export default function ScreeWrapper({ margin = true, children }: ScreenProps) {
   return (
     <SafeAreaView
       style={{
@@ -24,19 +19,15 @@ export default function ScreeWrapper({
         backgroundColor: Colors.bgColor,
       }}
     >
-      {imageStatusBar ? (
-        children
-      ) : (
-        <View
-          style={{
-            flex: 1,
+      <View
+        style={{
+          flex: 1,
 
-            paddingHorizontal: margin ? Sizes.font12 : undefined,
-          }}
-        >
-          {children}
-        </View>
-      )}
+          paddingHorizontal: margin ? Sizes.font12 : undefined,
+        }}
+      >
+        {children}
+      </View>
     </SafeAreaView>
   );
 }
