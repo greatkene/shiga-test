@@ -26,8 +26,14 @@ export const BottomTab = () => {
         component={Home}
         options={{
           tabBarLabel: "",
-          tabBarIcon: () => (
-            <Image source={require("@assets/icons/shiga.png")} />
+          tabBarIcon: ({ focused }) => (
+            <Image
+              source={
+                focused
+                  ? require("@assets/icons/shiga-active.png")
+                  : require("@assets/icons/shiga.png")
+              }
+            />
           ),
         }}
       />
@@ -36,8 +42,14 @@ export const BottomTab = () => {
         component={Transactions}
         options={{
           tabBarLabel: "",
-          tabBarIcon: () => (
-            <Image source={require("@assets/icons/transactions.png")} />
+          tabBarIcon: ({ focused }) => (
+            <Image
+              source={
+                focused
+                  ? require("@assets/icons/transactions-active.png")
+                  : require("@assets/icons/transactions.png")
+              }
+            />
           ),
         }}
       />
@@ -46,8 +58,14 @@ export const BottomTab = () => {
         component={Search}
         options={{
           tabBarLabel: "",
-          tabBarIcon: () => (
-            <Image source={require("@assets/icons/search.png")} />
+          tabBarIcon: ({ focused }) => (
+            <Image
+              source={
+                focused
+                  ? require("@assets/icons/search.png")
+                  : require("@assets/icons/search.png")
+              }
+            />
           ),
         }}
       />
@@ -56,9 +74,14 @@ export const BottomTab = () => {
         component={Cards}
         options={{
           tabBarLabel: "",
-
-          tabBarIcon: () => (
-            <Image source={require("@assets/icons/wallet.png")} />
+          tabBarIcon: ({ focused }) => (
+            <Image
+              source={
+                focused
+                  ? require("@assets/icons/card-active.png")
+                  : require("@assets/icons/card.png")
+              }
+            />
           ),
         }}
       />
@@ -67,8 +90,14 @@ export const BottomTab = () => {
         component={Account}
         options={{
           tabBarLabel: "",
-          tabBarIcon: () => (
-            <Image source={require("@assets/icons/account.png")} />
+          tabBarIcon: ({ focused }) => (
+            <Image
+              source={
+                focused
+                  ? require("@assets/icons/account.png")
+                  : require("@assets/icons/account.png")
+              }
+            />
           ),
         }}
       />
