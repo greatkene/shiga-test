@@ -1,8 +1,10 @@
 import { StyleSheet } from "react-native";
 import React, { useEffect } from "react";
 import ScreenWrapper from "@screens/ScreenWrapper";
-import { AppHeader, AppText } from "@atoms";
+import { AppHeader } from "@atoms";
 import { useUser } from "@store";
+import { Ionicons } from "@expo/vector-icons";
+import { Colors } from "@theme";
 
 export const Home = () => {
   const { userProfile, setUserProfile } = useUser();
@@ -19,15 +21,11 @@ export const Home = () => {
 
   return (
     <ScreenWrapper>
-      <AppHeader />
-      {userProfile && (
-        <>
-          <AppText>
-            Welcome, {userProfile.first_name} {userProfile.last_name}!
-          </AppText>
-          <AppText>Email: {userProfile.email}</AppText>
-        </>
-      )}
+      <AppHeader
+        title="Home"
+        icon={<Ionicons name="scan" size={24} color={Colors.white} />}
+        // onPress={handleBackPress}
+      />
     </ScreenWrapper>
   );
 };
