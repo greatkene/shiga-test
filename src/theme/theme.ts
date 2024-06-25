@@ -55,6 +55,7 @@ export const Colors = {
   green: "rgba(37, 156, 26, 1)",
   lightBlack: "rgba(0, 0, 0, 0.6)",
   secondary: "#FFC8DD",
+  bgLight: "#10120F",
 };
 
 export const Sizes = {
