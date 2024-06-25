@@ -37,6 +37,25 @@ export const RPW = (percentage: number) => {
   return (percentage / 100) * screenWidth;
 };
 
+export const FontFamily = {
+  sansRegular: "sans-regular",
+  sansMedium: "sans-medium",
+  sansSemiBold: "sans-semi-bold",
+  sansBold: "sans-bold",
+};
+
+export const Colors = {
+  primary: "#727AE4",
+  bgColor: "#0F0F10",
+  white: "#FFFFFF",
+  success: "#34C759",
+  border: "rgba(0, 0, 0, 0.2)",
+  red: "#DC2626",
+  black: "#000000",
+  green: "rgba(37, 156, 26, 1)",
+  lightBlack: "rgba(0, 0, 0, 0.6)",
+};
+
 export const Sizes = {
   font2: moderateScale(2),
   font4: moderateScale(4),
