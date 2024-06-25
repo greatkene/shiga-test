@@ -54,6 +54,7 @@ export const Colors = {
   black: "#000000",
   green: "rgba(37, 156, 26, 1)",
   lightBlack: "rgba(0, 0, 0, 0.6)",
+  secondary: "#FFC8DD",
 };
 
 export const Sizes = {

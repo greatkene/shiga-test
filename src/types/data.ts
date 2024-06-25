@@ -1,6 +1,5 @@
-export interface SlideItem {
-  id: string;
-  image: any;
-  header: string;
-  subtitle: string;
+export interface UserProfile {
+  email?: string;
+  first_name?: string;
+  last_name?: string;
 }
