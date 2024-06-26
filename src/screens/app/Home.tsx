@@ -1,13 +1,7 @@
-import {
-  StyleSheet,
-  View,
-  TouchableOpacity,
-  ScrollView,
-  Image,
-} from "react-native";
+import { StyleSheet, View, TouchableOpacity, Image } from "react-native";
 import React, { useEffect } from "react";
 import ScreenWrapper from "@screens/ScreenWrapper";
-import { AppHeader, AppText } from "@atoms";
+import { AppHeader, AppText, ScrollContainer } from "@atoms";
 import { useUser } from "@store";
 import { Entypo, Ionicons } from "@expo/vector-icons";
 import { Colors, RPW, Sizes, verticalScale } from "@theme";
@@ -32,10 +26,7 @@ export const Home = () => {
         title="Home"
         icon={<Ionicons name="scan" size={Sizes.font26} color={Colors.white} />}
       />
-      <ScrollView
-        contentContainerStyle={styles.container}
-        showsVerticalScrollIndicator={false}
-      >
+      <ScrollContainer>
         <View style={styles.balanceContainer}>
           <View
             style={{
@@ -126,7 +117,7 @@ export const Home = () => {
             onPress={() => console.log("first")}
           />
         </View>
-      </ScrollView>
+      </ScrollContainer>
     </ScreenWrapper>
   );
 };

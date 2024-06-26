@@ -11,7 +11,7 @@ import { Colors, FontFamily, Sizes } from "@theme";
 
 interface SearchInputProps {
   placeholder?: string;
-  onChangeText?: any;
+  onChangeText?: (text: string) => void;
   style?: StyleProp<ViewStyle>;
 }
 
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: Colors.input,
-    borderRadius: Sizes.font6,
+    borderRadius: Sizes.font12,
     paddingHorizontal: Sizes.font16,
     marginTop: Sizes.font30,
     marginBottom: Sizes.font22,
