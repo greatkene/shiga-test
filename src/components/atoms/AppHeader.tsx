@@ -33,7 +33,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
           </AppText>
         </View>
 
-        <AppText white fontBold>
+        <AppText white semiBig fontBold>
           {title}
         </AppText>
       </View>

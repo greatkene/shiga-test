@@ -34,7 +34,16 @@ export const Home = () => {
       />
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.balanceContainer}>
-          <AppText style={styles.balanceText}>USD Balance</AppText>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <AppText style={styles.balanceText}>USD Balance</AppText>
+            <Image source={require("@assets/icons/dropdown-flag.png")} />
+          </View>
           <AppText style={styles.balanceAmount} fontBold>
             $10,800.10
           </AppText>
