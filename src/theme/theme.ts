@@ -53,12 +53,15 @@ export const Colors = {
   red: "#DC2626",
   black: "#000000",
   green: "rgba(37, 156, 26, 1)",
-  lightBlack: "rgba(0, 0, 0, 0.6)",
+  lightBlack: "#454647",
   secondary: "#FFC8DD",
   bgLight: "#10120F",
+  buttonLightBg: "#454647",
+  subText: "#6F6F6F",
 };
 
 export const Sizes = {
+  borderRadius: moderateScale(30),
   font2: moderateScale(2),
   font4: moderateScale(4),
   font6: moderateScale(6),

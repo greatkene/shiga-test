@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     color: Colors.black,
   },
   gray: {
-    color: Colors.lightBlack,
+    color: Colors.subText,
   },
   success: {
     color: Colors.green,
