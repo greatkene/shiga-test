@@ -1,7 +1,7 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { TabStackParamList } from "./types";
-import { Colors, verticalScale } from "@theme";
+import { Colors, Sizes, verticalScale } from "@theme";
 import { Account, Cards, Home, Search, Transactions } from "@screens/app";
 import { Image } from "react-native";
 
@@ -16,6 +16,7 @@ export const BottomTab = () => {
           height: verticalScale(60),
           backgroundColor: Colors.bgColor,
           borderTopColor: "#222222",
+          paddingTop: Sizes.font20,
         },
         headerShown: false,
         tabBarLabelPosition: "below-icon",

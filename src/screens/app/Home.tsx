@@ -1,10 +1,16 @@
-import { StyleSheet, View, TouchableOpacity, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  ScrollView,
+  Image,
+} from "react-native";
 import React, { useEffect } from "react";
 import ScreenWrapper from "@screens/ScreenWrapper";
 import { AppHeader, AppText } from "@atoms";
 import { useUser } from "@store";
 import { Entypo, Ionicons } from "@expo/vector-icons";
-import { Colors, RPW, Sizes } from "@theme";
+import { Colors, RPW, Sizes, normalize, verticalScale } from "@theme";
 import { ServiceOptionCard } from "@molecules";
 
 export const Home = () => {
@@ -34,12 +40,12 @@ export const Home = () => {
           </AppText>
           <View style={styles.buttonContainer}>
             <TouchableOpacity style={styles.button}>
-              <AppText centered white>
+              <AppText semiMedium centered white>
                 Add Money
               </AppText>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button}>
-              <AppText centered white>
+              <AppText semiMedium centered white>
                 Transfer
               </AppText>
             </TouchableOpacity>
@@ -47,16 +53,19 @@ export const Home = () => {
         </View>
         <View style={styles.optionsContainer}>
           <TouchableOpacity style={styles.optionButton}>
-            <Ionicons name="home" size={Sizes.font26} color={Colors.white} />
-            <AppText style={styles.optionText}>Bank Account</AppText>
+            <Image source={require("@assets/icons/option-1.png")} />
+            <View>
+              <AppText style={styles.optionText}>Bank Account</AppText>
+              <AppText gray>Show account info</AppText>
+            </View>
           </TouchableOpacity>
           <TouchableOpacity style={styles.optionButton}>
-            <Ionicons
-              name="paper-plane"
-              size={Sizes.font26}
-              color={Colors.white}
-            />
-            <AppText style={styles.optionText}>Pay Bills</AppText>
+            <Image source={require("@assets/icons/option-2.png")} />
+
+            <View>
+              <AppText style={styles.optionText}>Pay Bills</AppText>
+              <AppText gray>Top-Up & utilities</AppText>
+            </View>
           </TouchableOpacity>
         </View>
         <View style={styles.extraOptionsContainer}>
@@ -152,14 +161,14 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.bgLight,
     flex: 1,
     padding: Sizes.font16,
-    borderRadius: Sizes.borderRadius,
-    alignItems: "center",
+    borderRadius: Sizes.font10,
     marginHorizontal: Sizes.font8,
+    height: verticalScale(130),
+    flexDirection: "column",
+    justifyContent: "space-between",
   },
   optionText: {
-    color: Colors.white,
     marginTop: Sizes.font8,
-    textAlign: "center",
   },
   extraOptionsContainer: {
     marginTop: Sizes.font16,
