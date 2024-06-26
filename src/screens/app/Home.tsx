@@ -10,7 +10,7 @@ import ScreenWrapper from "@screens/ScreenWrapper";
 import { AppHeader, AppText } from "@atoms";
 import { useUser } from "@store";
 import { Entypo, Ionicons } from "@expo/vector-icons";
-import { Colors, RPW, Sizes, normalize, verticalScale } from "@theme";
+import { Colors, RPW, Sizes, verticalScale } from "@theme";
 import { ServiceOptionCard } from "@molecules";
 
 export const Home = () => {
@@ -32,7 +32,10 @@ export const Home = () => {
         title="Home"
         icon={<Ionicons name="scan" size={Sizes.font26} color={Colors.white} />}
       />
-      <ScrollView contentContainerStyle={styles.container}>
+      <ScrollView
+        contentContainerStyle={styles.container}
+        showsVerticalScrollIndicator={false}
+      >
         <View style={styles.balanceContainer}>
           <View
             style={{
@@ -186,6 +189,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: Sizes.font12,
     flexDirection: "column",
     gap: Sizes.font26,
+    marginBottom: Sizes.font34,
   },
   extraOptionsTitle: {
     marginBottom: Sizes.font8,

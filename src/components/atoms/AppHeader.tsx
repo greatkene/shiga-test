@@ -28,7 +28,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
     <View style={styles.container}>
       <View style={styles.initialsContainer}>
         <View style={styles.initial}>
-          <AppText black semiMedium fontMedium>
+          <AppText black semiMedium fontBold>
             {initials}
           </AppText>
         </View>

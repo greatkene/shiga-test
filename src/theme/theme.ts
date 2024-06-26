@@ -58,6 +58,8 @@ export const Colors = {
   bgLight: "#10120F",
   buttonLightBg: "#454647",
   subText: "#6F6F6F",
+  placeHolder: "#2E302E",
+  input: "#1E1F20",
 };
 
 export const Sizes = {
