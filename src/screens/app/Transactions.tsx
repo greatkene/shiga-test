@@ -6,7 +6,7 @@ import { Transaction } from "@types";
 import { transactionData } from "@constants/data";
 import { Swipeable } from "react-native-gesture-handler";
 import { MaterialIcons } from "@expo/vector-icons";
-import { Colors, RPW, Sizes } from "@theme";
+import { Colors, RPW, Sizes, verticalScale } from "@theme";
 import { bankIcons } from "@constants/bankIcon";
 
 const groupTransactionsByDate = (transactions: Transaction[]) => {
@@ -125,7 +125,11 @@ const styles = StyleSheet.create({
   transactionItem: {
     flexDirection: "row",
     alignItems: "center",
-    marginVertical: Sizes.font14,
+    backgroundColor: Colors.shigaBG,
+    borderTopRightRadius: Sizes.font16,
+    borderBottomRightRadius: Sizes.font16,
+    width: RPW(93),
+    height: verticalScale(50),
   },
   transactionIcon: {
     marginRight: Sizes.font12,
@@ -139,13 +143,11 @@ const styles = StyleSheet.create({
   rightIcon: {
     backgroundColor: "#757484",
     alignItems: "center",
-    flex: 1,
-    justifyContent: "flex-end",
+    justifyContent: "center",
     width: RPW(20),
-    borderTopRightRadius: Sizes.borderRadius,
-    borderBottomRightRadius: Sizes.borderRadius,
-    marginVertical: Sizes.font8,
-    paddingRight: Sizes.font16,
+    height: verticalScale(50),
+    borderTopRightRadius: Sizes.font16,
+    borderBottomRightRadius: Sizes.font16,
   },
   bankIcon: {
     width: Sizes.font22,

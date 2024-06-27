@@ -16,7 +16,7 @@ export default function ScreeWrapper({ margin = true, children }: ScreenProps) {
       style={{
         paddingTop: Platform.OS === "android" ? StatusBarManager.HEIGHT : 0,
         flex: 1,
-        backgroundColor: Colors.bgColor,
+        backgroundColor: Colors.shigaBG,
       }}
     >
       <View
