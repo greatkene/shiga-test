@@ -6,7 +6,8 @@ import { Transaction } from "@types";
 import { transactionData } from "@constants/data";
 import { Swipeable } from "react-native-gesture-handler";
 import { MaterialIcons } from "@expo/vector-icons";
-import { Sizes } from "@theme";
+import { Colors, RPW, Sizes } from "@theme";
+import { bankIcons } from "@constants/bankIcon";
 
 const groupTransactionsByDate = (transactions: Transaction[]) => {
   return transactions.reduce((groups, transaction) => {
@@ -19,6 +20,44 @@ const groupTransactionsByDate = (transactions: Transaction[]) => {
   }, {} as Record<string, Transaction[]>);
 };
 
+const getTransactionIcon = (transaction: Transaction) => {
+  if (transaction.status === "failed") {
+    return (
+      <MaterialIcons name="error" size={Sizes.font22} color={Colors.red} />
+    );
+  }
+  if (transaction.type === "received") {
+    return (
+      <MaterialIcons
+        name="arrow-downward"
+        size={Sizes.font22}
+        color={Colors.success}
+      />
+    );
+  }
+  if (transaction.type === "sent") {
+    return (
+      <MaterialIcons
+        name="arrow-upward"
+        size={Sizes.font22}
+        color={Colors.primary}
+      />
+    );
+  }
+  if (transaction.bank && bankIcons[transaction.bank]) {
+    return (
+      <Image source={bankIcons[transaction.bank]} style={styles.bankIcon} />
+    );
+  }
+  return (
+    <MaterialIcons
+      name="account-balance-wallet"
+      size={Sizes.font22}
+      color={Colors.secondary}
+    />
+  );
+};
+
 export const Transactions: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
 
@@ -29,8 +68,8 @@ export const Transactions: React.FC = () => {
   const groupedTransactions = groupTransactionsByDate(filteredTransactions);
 
   const renderRightActions = () => (
-    <View style={styles.eyeIconContainer}>
-      <MaterialIcons name="visibility" size={24} color="#FFF" />
+    <View style={styles.rightIcon}>
+      <MaterialIcons name="visibility" size={Sizes.font26} color="#FFF" />
     </View>
   );
 
@@ -56,10 +95,15 @@ export const Transactions: React.FC = () => {
                 renderRightActions={renderRightActions}
               >
                 <View style={styles.transactionItem}>
-                  <AppText style={styles.transactionDescription}>
-                    {transaction.description}
-                  </AppText>
-                  <AppText>{transaction.amount}</AppText>
+                  <View style={styles.transactionIcon}>
+                    {getTransactionIcon(transaction)}
+                  </View>
+                  <View style={styles.transactionDetails}>
+                    <AppText style={styles.transactionDescription}>
+                      {transaction.description}
+                    </AppText>
+                    <AppText>{transaction.amount}</AppText>
+                  </View>
                 </View>
               </Swipeable>
             ))}
@@ -79,21 +123,33 @@ const styles = StyleSheet.create({
     marginBottom: Sizes.font8,
   },
   transactionItem: {
-    backgroundColor: "#1C1C1E",
-    padding: Sizes.font16,
-    borderRadius: Sizes.borderRadius,
-    marginVertical: Sizes.font8,
+    flexDirection: "row",
+    alignItems: "center",
+    marginVertical: Sizes.font14,
+  },
+  transactionIcon: {
+    marginRight: Sizes.font12,
+  },
+  transactionDetails: {
+    flex: 1,
   },
   transactionDescription: {
     marginBottom: Sizes.font4,
   },
-
-  eyeIconContainer: {
-    backgroundColor: "#1C1C1E",
-    justifyContent: "center",
+  rightIcon: {
+    backgroundColor: "#757484",
     alignItems: "center",
-    height: "100%",
-    borderRadius: Sizes.borderRadius,
+    flex: 1,
+    justifyContent: "flex-end",
+    width: RPW(20),
+    borderTopRightRadius: Sizes.borderRadius,
+    borderBottomRightRadius: Sizes.borderRadius,
     marginVertical: Sizes.font8,
+    paddingRight: Sizes.font16,
+  },
+  bankIcon: {
+    width: Sizes.font22,
+    height: Sizes.font22,
+    resizeMode: "contain",
   },
 });

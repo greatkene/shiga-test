@@ -60,6 +60,7 @@ export const Colors = {
   subText: "#6F6F6F",
   placeHolder: "#2E302E",
   input: "#1E1F20",
+  shigaBG: "#171819",
 };
 
 export const Sizes = {

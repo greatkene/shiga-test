@@ -5,6 +5,7 @@ export interface UserProfile {
 }
 
 export interface Transaction {
+  [x: string]: any;
   id: number;
   description: string;
   amount: string;
