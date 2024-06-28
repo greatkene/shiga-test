@@ -7,7 +7,10 @@ import { Sizes } from "@theme";
 
 export const Confirmation = ({
   navigation,
+  route,
 }: RootStackProps<"Confirmation">) => {
+  const { amount } = route.params;
+
   return (
     <ScreenWrapper>
       <View style={styles.container}>
@@ -19,11 +22,15 @@ export const Confirmation = ({
           COMPLETED
         </AppText>
         <AppText gray style={styles.text}>
-          You withdrew $600.95 from your Virtual Card
+          You added ${amount} to your Virtual Card
         </AppText>
       </View>
       <View style={styles.buttonContainer}>
-        <AppButton title="Done" onPress={() => navigation.navigate("Home")} />
+        <AppButton
+          title="Done"
+          transparent
+          onPress={() => navigation.navigate("Home")}
+        />
       </View>
     </ScreenWrapper>
   );

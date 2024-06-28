@@ -29,18 +29,18 @@ export const AppButton: React.FC<ButtonProps> = ({
   const buttonColor = disabled
     ? "rgba(114,122,228, .1)"
     : transparent
-    ? "transparent"
+    ? "#2E302E"
     : Colors.primary;
   const textColor = disabled
     ? Colors.lightBlack
     : transparent
-    ? Colors.primary
+    ? Colors.white
     : Colors.white;
 
   const borderColor = disabled
     ? "rgba(0, 0, 0, .15)"
     : transparent
-    ? Colors.primary
+    ? "#2E302E"
     : Colors.primary;
 
   return (

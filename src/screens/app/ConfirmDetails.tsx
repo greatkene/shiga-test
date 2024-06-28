@@ -12,14 +12,14 @@ export const ConfirmDetails = ({
   route,
 }: RootStackProps<"ConfirmDetails">) => {
   const { amount } = route.params;
-  const { userProfile, deductBalance } = useUser();
+  const { deductBalance } = useUser();
   const transactionAmount = parseFloat(amount);
   const issuanceFee = 5;
   const totalDebit = transactionAmount + issuanceFee;
 
   const handleConfirmAndPay = () => {
     deductBalance(totalDebit);
-    navigation.navigate("Confirmation");
+    navigation.navigate("Confirmation", { amount: amount });
   };
 
   const transactionDetails = [
