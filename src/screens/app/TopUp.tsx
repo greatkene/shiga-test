@@ -7,7 +7,7 @@ import { FontAwesome5, Ionicons } from "@expo/vector-icons";
 import { RootStackProps } from "@router/types";
 
 export const TopUp = ({ navigation }: RootStackProps<"TopUp">) => {
-  const [amount, setAmount] = useState("50");
+  const [amount, setAmount] = useState("0");
 
   const handleNumberPress = (num: string) => {
     setAmount((prev) => (prev === "0" ? num : prev + num));
@@ -57,9 +57,38 @@ export const TopUp = ({ navigation }: RootStackProps<"TopUp">) => {
             </TouchableOpacity>
           </View>
           <View style={styles.amountContainer}>
-            <AppText fontBold style={styles.amountText}>
-              ${amount}
-            </AppText>
+            <View style={{ flexDirection: "row", alignItems: "flex-start" }}>
+              <AppText fontBold big style={styles.dollarSign}>
+                $
+              </AppText>
+              <AppText fontBold style={styles.amountText}>
+                {amount}
+              </AppText>
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                gap: Sizes.font8,
+                marginTop: Sizes.font11,
+              }}
+            >
+              <View
+                style={{
+                  backgroundColor: Colors.iconContainer,
+                  width: normalize(18),
+                  height: normalize(18),
+                  borderRadius: Sizes.font50,
+                  alignItems: "center",
+                }}
+              >
+                <AppText fontBold>=</AppText>
+              </View>
+
+              <AppText fontBold semiMedium>
+                ${amount}
+              </AppText>
+            </View>
           </View>
         </View>
         <View style={styles.destinationContainer}>
@@ -138,6 +167,10 @@ const styles = StyleSheet.create({
     padding: Sizes.font34,
     borderRadius: Sizes.font8,
     marginBottom: Sizes.font16,
+  },
+  dollarSign: {
+    marginRight: Sizes.font4,
+    marginTop: Sizes.font8,
   },
   amountText: {
     color: Colors.white,
