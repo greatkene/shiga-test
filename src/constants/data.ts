@@ -71,7 +71,7 @@ export const transactionData: Transaction[] = [
     description: "Spent on",
     amount: "$50.09",
     date: "July 2023",
-    status: "failed",
+    status: "debit",
     type: "spent",
     source: "NETFLIX.COM",
   },

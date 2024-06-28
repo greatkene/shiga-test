@@ -68,12 +68,34 @@ const getTransactionIcon = (transaction: Transaction) => {
     );
   }
   return (
-    <MaterialIcons
-      name="account-balance-wallet"
-      size={Sizes.font22}
-      color={Colors.secondary}
-    />
+    <View style={[styles.statusIconContainer, { backgroundColor: "#232425" }]}>
+      <MaterialIcons
+        name="account-balance-wallet"
+        size={Sizes.font22}
+        color={Colors.secondary}
+      />
+    </View>
   );
+};
+
+const getTransactionAmountStyle = (transaction: Transaction) => {
+  if (transaction.status === "failed") {
+    return [styles.transactionAmount, styles.transactionAmountFailed];
+  }
+  if (transaction.type === "received") {
+    return [styles.transactionAmount, styles.transactionAmountReceived];
+  }
+  return styles.transactionAmount;
+};
+
+const getTransactionAmountText = (transaction: Transaction) => {
+  if (transaction.type === "received") {
+    return `+ ${transaction.amount}`;
+  }
+  if (transaction.status === "failed") {
+    return transaction.amount;
+  }
+  return transaction.amount;
 };
 
 export const Transactions: React.FC = () => {
@@ -134,7 +156,12 @@ export const Transactions: React.FC = () => {
                         {transaction.source}
                       </AppText>
                     </View>
-                    <AppText>{transaction.amount}</AppText>
+                    <AppText
+                      gray
+                      style={getTransactionAmountStyle(transaction)}
+                    >
+                      {getTransactionAmountText(transaction)}
+                    </AppText>
                   </View>
                 </View>
               </Swipeable>
@@ -195,5 +222,14 @@ const styles = StyleSheet.create({
     borderRadius: Sizes.font30 * 1.5,
     alignItems: "center",
     justifyContent: "center",
+  },
+  transactionAmount: {
+    fontSize: Sizes.font14,
+  },
+  transactionAmountReceived: {
+    color: Colors.success,
+  },
+  transactionAmountFailed: {
+    textDecorationLine: "line-through",
   },
 });
