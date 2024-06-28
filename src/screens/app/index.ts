@@ -5,3 +5,4 @@ export * from "./Search";
 export * from "./Account";
 export * from "./TopUp";
 export * from "./ConfirmDetails";
+export * from "./Confirmation";

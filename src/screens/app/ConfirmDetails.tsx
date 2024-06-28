@@ -13,14 +13,13 @@ export const ConfirmDetails = ({
 }: RootStackProps<"ConfirmDetails">) => {
   const { amount } = route.params;
   const { userProfile, deductBalance } = useUser();
-  const balance = userProfile?.balance ?? 0;
   const transactionAmount = parseFloat(amount);
   const issuanceFee = 5;
   const totalDebit = transactionAmount + issuanceFee;
 
   const handleConfirmAndPay = () => {
     deductBalance(totalDebit);
-    navigation.goBack();
+    navigation.navigate("Confirmation");
   };
 
   const transactionDetails = [
