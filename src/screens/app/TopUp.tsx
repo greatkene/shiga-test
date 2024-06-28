@@ -5,18 +5,24 @@ import ScreenWrapper from "@screens/ScreenWrapper";
 import { Colors, Sizes, normalize } from "@theme";
 import { FontAwesome5, Ionicons } from "@expo/vector-icons";
 import { RootStackProps } from "@router/types";
+import { useUser } from "@store";
 
 export const TopUp = ({ navigation }: RootStackProps<"TopUp">) => {
   const [amount, setAmount] = useState("0");
+  const [isMaxUsed, setIsMaxUsed] = useState(false);
 
   const handleNumberPress = (num: string) => {
+    setIsMaxUsed(false);
     setAmount((prev) => (prev === "0" ? num : prev + num));
   };
 
   const handleDeletePress = () => {
+    setIsMaxUsed(false);
     setAmount((prev) => (prev.length > 1 ? prev.slice(0, -1) : "0"));
   };
 
+  const { userProfile } = useUser();
+  const balance = userProfile?.balance ?? 0;
   return (
     <ScreenWrapper margin={false}>
       <ScrollContainer style={styles.container}>
@@ -48,12 +54,20 @@ export const TopUp = ({ navigation }: RootStackProps<"TopUp">) => {
                 <AppText fontMedium semiMedium>
                   US Dollar
                 </AppText>
-                <AppText gray>$590.95</AppText>
+                <AppText gray>${balance}</AppText>
               </View>
             </View>
 
-            <TouchableOpacity style={styles.useMaxButton}>
-              <AppText style={styles.useMaxText}>Use Max</AppText>
+            <TouchableOpacity
+              style={styles.useMaxButton}
+              onPress={() => {
+                setAmount(balance.toString());
+                setIsMaxUsed(true);
+              }}
+            >
+              <AppText style={styles.useMaxText}>
+                {isMaxUsed ? "Maxed" : "Use Max"}
+              </AppText>
             </TouchableOpacity>
           </View>
           <View style={styles.amountContainer}>
@@ -73,21 +87,32 @@ export const TopUp = ({ navigation }: RootStackProps<"TopUp">) => {
                 marginTop: Sizes.font11,
               }}
             >
-              <View
-                style={{
-                  backgroundColor: Colors.iconContainer,
-                  width: normalize(18),
-                  height: normalize(18),
-                  borderRadius: Sizes.font50,
-                  alignItems: "center",
-                }}
-              >
-                <AppText fontBold>=</AppText>
-              </View>
-
-              <AppText fontBold semiMedium>
-                ${amount}
-              </AppText>
+              {parseFloat(amount) > balance ? (
+                <AppText semiMedium red>
+                  Not enough USD
+                </AppText>
+              ) : parseFloat(amount) < 5 ? (
+                <AppText semiMedium red>
+                  The minimum amount is $5
+                </AppText>
+              ) : (
+                <>
+                  <View
+                    style={{
+                      backgroundColor: Colors.iconContainer,
+                      width: normalize(18),
+                      height: normalize(18),
+                      borderRadius: Sizes.font50,
+                      alignItems: "center",
+                    }}
+                  >
+                    <AppText fontBold>=</AppText>
+                  </View>
+                  <AppText fontBold semiMedium>
+                    ${amount}
+                  </AppText>
+                </>
+              )}
             </View>
           </View>
         </View>
@@ -118,7 +143,12 @@ export const TopUp = ({ navigation }: RootStackProps<"TopUp">) => {
       <View style={{ marginHorizontal: Sizes.font16 }}>
         <AppButton
           onPress={() => navigation.navigate("ConfirmDetails")}
-          disabled={amount === "0"}
+          disabled={
+            amount === "0" ||
+            parseFloat(amount) < 5 ||
+            balance === 0 ||
+            parseFloat(amount) > balance
+          }
           title="Continue"
         />
       </View>

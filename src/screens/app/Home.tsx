@@ -17,6 +17,7 @@ export const Home = ({ navigation }: TabScreenProps<"Home">) => {
         email: "great@gmail.com",
         first_name: "Great",
         last_name: "Kene",
+        balance: 275,
       });
     }
   }, [userProfile, setUserProfile]);
@@ -40,7 +41,7 @@ export const Home = ({ navigation }: TabScreenProps<"Home">) => {
             <Image source={require("@assets/icons/dropdown-flag.png")} />
           </View>
           <AppText style={styles.balanceAmount} fontBold>
-            $10,800.10
+            ${userProfile?.balance}
           </AppText>
           <View style={styles.buttonContainer}>
             <TouchableOpacity
