@@ -1,6 +1,6 @@
 import { StyleSheet, View, TouchableOpacity, Image } from "react-native";
 import React, { useState } from "react";
-import { AppButton, AppText } from "@atoms";
+import { AppButton, AppText, ScrollContainer } from "@atoms";
 import ScreenWrapper from "@screens/ScreenWrapper";
 import { Colors, Sizes, normalize } from "@theme";
 import { FontAwesome5, Ionicons } from "@expo/vector-icons";
@@ -19,7 +19,7 @@ export const TopUp = ({ navigation }: RootStackProps<"TopUp">) => {
 
   return (
     <ScreenWrapper margin={false}>
-      <View style={styles.container}>
+      <ScrollContainer style={styles.container}>
         <View style={styles.header}>
           <AppText fontBold big>
             Top Up
@@ -114,6 +114,8 @@ export const TopUp = ({ navigation }: RootStackProps<"TopUp">) => {
             <Ionicons name="chevron-back" size={24} color="white" />
           </TouchableOpacity>
         </View>
+      </ScrollContainer>
+      <View style={{ marginHorizontal: Sizes.font16 }}>
         <AppButton disabled title="Continue" />
       </View>
     </ScreenWrapper>
@@ -183,7 +185,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: Sizes.font20,
     paddingVertical: Sizes.font26,
     borderRadius: Sizes.font12,
-    marginVertical: Sizes.font16,
+    marginVertical: Sizes.font12,
   },
   virtualCardIcon: {
     width: Sizes.font22,
@@ -198,7 +200,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "center",
-    marginBottom: Sizes.font16,
+    marginBottom: Sizes.font11,
   },
   key: {
     width: "30%",
@@ -206,7 +208,7 @@ const styles = StyleSheet.create({
     // backgroundColor: Colors.border,
     alignItems: "center",
     justifyContent: "center",
-    padding: Sizes.font16,
+    padding: Sizes.font14,
     borderRadius: Sizes.font8,
   },
   keyText: {

@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     borderRadius: Sizes.borderRadius,
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: Sizes.font10 * 4,
+    marginBottom: Sizes.font6,
   },
   buttonContent: {
     flexDirection: "row",
