@@ -5,8 +5,8 @@ import { AppHeader, AppText, ScrollContainer, SearchInput } from "@atoms";
 import { Transaction } from "@types";
 import { transactionData } from "@constants/data";
 import { Swipeable } from "react-native-gesture-handler";
-import { MaterialIcons } from "@expo/vector-icons";
-import { Colors, RPW, Sizes, verticalScale } from "@theme";
+import { AntDesign, MaterialIcons } from "@expo/vector-icons";
+import { Colors, RPW, Sizes, normalize, verticalScale } from "@theme";
 import { bankIcons } from "@constants/bankIcon";
 
 const groupTransactionsByDate = (transactions: Transaction[]) => {
@@ -23,25 +23,43 @@ const groupTransactionsByDate = (transactions: Transaction[]) => {
 const getTransactionIcon = (transaction: Transaction) => {
   if (transaction.status === "failed") {
     return (
-      <MaterialIcons name="error" size={Sizes.font22} color={Colors.red} />
+      <View
+        style={[styles.statusIconContainer, { backgroundColor: "#2F1D1C" }]}
+      >
+        <AntDesign name="warning" size={Sizes.font22} color={Colors.red} />
+      </View>
     );
   }
   if (transaction.type === "received") {
     return (
-      <MaterialIcons
-        name="arrow-downward"
-        size={Sizes.font22}
-        color={Colors.success}
-      />
+      <View
+        style={[
+          styles.statusIconContainer,
+          { backgroundColor: Colors.success },
+        ]}
+      >
+        <MaterialIcons
+          name="arrow-downward"
+          size={Sizes.font22}
+          color={Colors.white}
+        />
+      </View>
     );
   }
   if (transaction.type === "sent") {
     return (
-      <MaterialIcons
-        name="arrow-upward"
-        size={Sizes.font22}
-        color={Colors.primary}
-      />
+      <View
+        style={[
+          styles.statusIconContainer,
+          { backgroundColor: Colors.success },
+        ]}
+      >
+        <MaterialIcons
+          name="arrow-upward"
+          size={Sizes.font22}
+          color={Colors.primary}
+        />
+      </View>
     );
   }
   if (transaction.bank && bankIcons[transaction.bank]) {
@@ -167,8 +185,15 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: Sizes.font16,
   },
   bankIcon: {
-    width: Sizes.font22,
-    height: Sizes.font22,
+    width: normalize(35),
+    height: normalize(35),
     resizeMode: "contain",
+  },
+  statusIconContainer: {
+    width: normalize(35),
+    height: normalize(35),
+    borderRadius: Sizes.font30 * 1.5,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
