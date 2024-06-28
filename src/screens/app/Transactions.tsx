@@ -1,4 +1,4 @@
-import { StyleSheet, Image, View } from "react-native";
+import { StyleSheet, Image, View, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import ScreenWrapper from "@screens/ScreenWrapper";
 import { AppHeader, AppText, ScrollContainer, SearchInput } from "@atoms";
@@ -60,6 +60,7 @@ const getTransactionIcon = (transaction: Transaction) => {
 
 export const Transactions: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [isVisibile, setIsVisible] = useState(false);
 
   const filteredTransactions = transactionData.filter((transaction) =>
     transaction.description.toLowerCase().includes(searchQuery.toLowerCase())
@@ -67,10 +68,18 @@ export const Transactions: React.FC = () => {
 
   const groupedTransactions = groupTransactionsByDate(filteredTransactions);
 
+  const toggleVisible = () => {
+    setIsVisible(!isVisibile);
+  };
+
   const renderRightActions = () => (
-    <View style={styles.rightIcon}>
-      <MaterialIcons name="visibility" size={Sizes.font26} color="#FFF" />
-    </View>
+    <TouchableOpacity onPress={toggleVisible} style={styles.rightIcon}>
+      {isVisibile ? (
+        <MaterialIcons name="visibility" size={Sizes.font26} color="#FFF" />
+      ) : (
+        <Image source={require("@assets/image/eye-lash.png")} />
+      )}
+    </TouchableOpacity>
   );
 
   return (
@@ -99,9 +108,14 @@ export const Transactions: React.FC = () => {
                     {getTransactionIcon(transaction)}
                   </View>
                   <View style={styles.transactionDetails}>
-                    <AppText style={styles.transactionDescription}>
-                      {transaction.description}
-                    </AppText>
+                    <View>
+                      <AppText gray style={styles.transactionDescription}>
+                        {transaction.description}
+                      </AppText>
+                      <AppText style={styles.transactionDescription}>
+                        {transaction.source}
+                      </AppText>
+                    </View>
                     <AppText>{transaction.amount}</AppText>
                   </View>
                 </View>
@@ -128,7 +142,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.shigaBG,
     borderTopRightRadius: Sizes.font16,
     borderBottomRightRadius: Sizes.font16,
-    width: RPW(93),
+    width: RPW(85),
     height: verticalScale(50),
   },
   transactionIcon: {
@@ -136,6 +150,9 @@ const styles = StyleSheet.create({
   },
   transactionDetails: {
     flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   transactionDescription: {
     marginBottom: Sizes.font4,
