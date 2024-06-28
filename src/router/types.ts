@@ -9,6 +9,9 @@ export type TabScreenProps<ScreenName extends keyof TabStackParamList> =
 
 export interface RootStackParamsList extends ParamListBase {
  Home: undefined
+ ConfirmDetails: {
+  amount: any
+ }
 }
 
 export type RootStackProps<ScreenName extends keyof RootStackParamsList> =

@@ -5,15 +5,29 @@ import ScreenWrapper from "@screens/ScreenWrapper";
 import { Feather } from "@expo/vector-icons";
 import { Colors, Sizes, normalize, verticalScale } from "@theme";
 import { RootStackProps } from "@router/types";
+import { useUser } from "@store";
 
 export const ConfirmDetails = ({
   navigation,
+  route,
 }: RootStackProps<"ConfirmDetails">) => {
+  const { amount } = route.params;
+  const { userProfile, deductBalance } = useUser();
+  const balance = userProfile?.balance ?? 0;
+  const transactionAmount = parseFloat(amount);
+  const issuanceFee = 5;
+  const totalDebit = transactionAmount + issuanceFee;
+
+  const handleConfirmAndPay = () => {
+    deductBalance(totalDebit);
+    navigation.goBack();
+  };
+
   const transactionDetails = [
-    { label: "You will receive", value: "$100.00" },
-    { label: "Issuance fee", value: "$5.00" },
+    { label: "You will receive", value: `$${amount}` },
+    { label: "Issuance fee", value: `$${issuanceFee.toFixed(2)}` },
     { label: "Transaction Type", value: "Card Creation" },
-    { label: "Total Debit", value: "$105.00" },
+    { label: "Total Debit", value: `$${totalDebit.toFixed(2)}` },
   ];
 
   return (
@@ -49,12 +63,11 @@ export const ConfirmDetails = ({
           Please note once you tap "Confirm & Pay" this transaction cannot be
           reversed
         </AppText>
-        <AppButton title="Confirm & Pay" />
+        <AppButton title="Confirm & Pay" onPress={handleConfirmAndPay} />
       </View>
     </ScreenWrapper>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     marginTop: verticalScale(60),

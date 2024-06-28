@@ -142,7 +142,7 @@ export const TopUp = ({ navigation }: RootStackProps<"TopUp">) => {
       </ScrollContainer>
       <View style={{ marginHorizontal: Sizes.font16 }}>
         <AppButton
-          onPress={() => navigation.navigate("ConfirmDetails")}
+          onPress={() => navigation.navigate("ConfirmDetails", { amount })}
           disabled={
             amount === "0" ||
             parseFloat(amount) < 5 ||
