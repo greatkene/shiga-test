@@ -116,7 +116,11 @@ export const TopUp = ({ navigation }: RootStackProps<"TopUp">) => {
         </View>
       </ScrollContainer>
       <View style={{ marginHorizontal: Sizes.font16 }}>
-        <AppButton disabled title="Continue" />
+        <AppButton
+          onPress={() => navigation.navigate("ConfirmDetails")}
+          disabled={amount === "0"}
+          title="Continue"
+        />
       </View>
     </ScreenWrapper>
   );
