@@ -123,7 +123,7 @@ export const Transactions: React.FC = () => {
   );
 
   return (
-    <ScreenWrapper>
+    <ScreenWrapper backgroundColor={Colors.shigaBG}>
       <AppHeader
         title="Transactions"
         icon={<Image source={require("@assets/icons/calendar.png")} />}

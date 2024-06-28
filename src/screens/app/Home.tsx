@@ -6,8 +6,9 @@ import { useUser } from "@store";
 import { Entypo, Ionicons } from "@expo/vector-icons";
 import { Colors, RPW, Sizes, verticalScale } from "@theme";
 import { ServiceOptionCard } from "@molecules";
+import { TabScreenProps } from "@router/types";
 
-export const Home = () => {
+export const Home = ({ navigation }: TabScreenProps<"Home">) => {
   const { userProfile, setUserProfile } = useUser();
 
   useEffect(() => {
@@ -42,7 +43,10 @@ export const Home = () => {
             $10,800.10
           </AppText>
           <View style={styles.buttonContainer}>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("TopUp")}
+              style={styles.button}
+            >
               <AppText semiMedium centered white>
                 Add Money
               </AppText>

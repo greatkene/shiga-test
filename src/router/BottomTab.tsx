@@ -14,7 +14,7 @@ export const BottomTab = () => {
       screenOptions={({ route }: any) => ({
         tabBarStyle: {
           height: verticalScale(60),
-          backgroundColor: Colors.bgColor,
+          backgroundColor: "#171819",
           borderTopColor: "#222222",
           paddingTop: Sizes.font20,
         },

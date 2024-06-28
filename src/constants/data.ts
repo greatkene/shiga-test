@@ -17,7 +17,7 @@ export const transactionData: Transaction[] = [
     // status: "success",
     // type: "received",
     bank: "GTBank",
-    source: "Daniel Agoziem",
+    source: "Nwabugo",
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ export const transactionData: Transaction[] = [
     // status: "success",
     // type: "sent",
     bank: "GTBank",
-    source: "@chinonsogreat",
+    source: "@greatkene",
   },
   {
     id: 5,
@@ -55,7 +55,7 @@ export const transactionData: Transaction[] = [
     // status: "success",
     // type: "sent",
     bank: "GTBank",
-    source: "Oluwatobi Oseni",
+    source: "Bigger Great",
   },
   {
     id: 7,

@@ -61,6 +61,7 @@ export const Colors = {
   placeHolder: "#2E302E",
   input: "#1E1F20",
   shigaBG: "#171819",
+  iconContainer: "#232425",
 };
 
 export const Sizes = {

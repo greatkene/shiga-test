@@ -10,13 +10,17 @@ interface ScreenProps {
   margin?: boolean;
 }
 
-export default function ScreeWrapper({ margin = true, children }: ScreenProps) {
+export default function ScreeWrapper({
+  margin = true,
+  backgroundColor,
+  children,
+}: ScreenProps) {
   return (
     <SafeAreaView
       style={{
         paddingTop: Platform.OS === "android" ? StatusBarManager.HEIGHT : 0,
         flex: 1,
-        backgroundColor: Colors.shigaBG,
+        backgroundColor: backgroundColor ? backgroundColor : Colors.bgColor,
       }}
     >
       <View
